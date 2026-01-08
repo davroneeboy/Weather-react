@@ -1,5 +1,5 @@
-const getDefaultProvider = (): 'openweather' | 'openmeteo' => {
-  const envProvider = process.env.REACT_APP_API_PROVIDER as 'openweather' | 'openmeteo' | undefined;
+const getDefaultProvider = (): 'openweather' | 'openmeteo' | 'wttr' => {
+  const envProvider = process.env.REACT_APP_API_PROVIDER as 'openweather' | 'openmeteo' | 'wttr' | undefined;
   if (envProvider) {
     return envProvider;
   }

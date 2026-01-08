@@ -8,7 +8,9 @@ import {
 } from 'react-icons/wi';
 import { 
   FiDroplet,
-  FiThermometer
+  FiThermometer,
+  FiWind,
+  FiEye
 } from 'react-icons/fi';
 
 interface WeatherDisplayProps {
@@ -32,6 +34,11 @@ export function WeatherDisplay({ weather }: WeatherDisplayProps): React.ReactEle
   const formatTime = (timestamp: number): string => {
     const date = new Date(timestamp * 1000);
     return date.toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' });
+  };
+
+  const getWindDirection = (deg: number): string => {
+    const directions = ['С', 'СВ', 'В', 'ЮВ', 'Ю', 'ЮЗ', 'З', 'СЗ'];
+    return directions[Math.round(deg / 45) % 8];
   };
 
   return (
@@ -91,6 +98,36 @@ export function WeatherDisplay({ weather }: WeatherDisplayProps): React.ReactEle
           </div>
         </div>
 
+        {weather.wind && (
+          <div className="weather-card">
+            <div className="weather-card-icon">
+              <FiWind />
+            </div>
+            <div className="weather-card-content">
+              <div className="weather-card-label">Ветер</div>
+              <div className="weather-card-value">
+                {Math.round(weather.wind.speed)} м/с {getWindDirection(weather.wind.deg)}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {weather.visibility && (
+          <div className="weather-card">
+            <div className="weather-card-icon">
+              <FiEye />
+            </div>
+            <div className="weather-card-content">
+              <div className="weather-card-label">Видимость</div>
+              <div className="weather-card-value">
+                {weather.visibility >= 1000 
+                  ? `${(weather.visibility / 1000).toFixed(1)} км` 
+                  : `${weather.visibility} м`}
+              </div>
+            </div>
+          </div>
+        )}
+
         <div className="weather-card">
           <div className="weather-card-icon">
             <WiSunrise />
@@ -110,6 +147,18 @@ export function WeatherDisplay({ weather }: WeatherDisplayProps): React.ReactEle
             <div className="weather-card-value">{formatTime(weather.sys.sunset)}</div>
           </div>
         </div>
+
+        {weather.clouds && (
+          <div className="weather-card">
+            <div className="weather-card-icon">
+              <FiDroplet />
+            </div>
+            <div className="weather-card-content">
+              <div className="weather-card-label">Облачность</div>
+              <div className="weather-card-value">{weather.clouds.all}%</div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

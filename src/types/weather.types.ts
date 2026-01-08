@@ -27,12 +27,29 @@ export interface WeatherData {
   weather: WeatherCondition[];
   cod: string | number;
   message?: string;
+  wind?: {
+    speed: number;
+    deg: number;
+  };
+  visibility?: number;
+  clouds?: {
+    all: number;
+  };
+}
+
+export interface ForecastDay {
+  date: string;
+  temp_min: number;
+  temp_max: number;
+  icon: string;
+  description: string;
+  main: string;
 }
 
 export interface WeatherApiConfig {
   key: string;
   base: string;
-  provider?: 'openweather' | 'openmeteo';
+  provider?: 'openweather' | 'openmeteo' | 'wttr';
 }
 
 export interface SearchParams {
