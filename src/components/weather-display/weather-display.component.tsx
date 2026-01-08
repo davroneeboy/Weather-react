@@ -9,7 +9,7 @@ interface WeatherDisplayProps {
 /**
  * Weather information display component
  */
-export function WeatherDisplay({ weather }: WeatherDisplayProps): JSX.Element {
+export function WeatherDisplay({ weather }: WeatherDisplayProps): React.ReactElement {
   const formattedDate = buildFormattedDate(new Date());
   const temperature = Math.round(weather.main.temp);
   const weatherCondition = weather.weather[0]?.main || '';

@@ -10,7 +10,7 @@ interface SearchBoxProps {
 /**
  * Search box component for city input
  */
-export function SearchBox({ query, isLoading, onQueryChange, onSearch }: SearchBoxProps): JSX.Element {
+export function SearchBox({ query, isLoading, onQueryChange, onSearch }: SearchBoxProps): React.ReactElement {
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>): void => {
     if (event.key === 'Enter' && query.trim()) {
       onSearch();

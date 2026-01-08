@@ -2,6 +2,19 @@ import { WeatherData } from '../types/weather.types';
 import { TEMPERATURE_THRESHOLD } from '../constants/api.constants';
 
 /**
+ * Extracts error message from unknown error type
+ * @param error - Unknown error object
+ * @param defaultMessage - Default message if error is not an Error instance
+ * @returns Error message string
+ */
+export function extractErrorMessage(error: unknown, defaultMessage: string): string {
+  if (error instanceof Error) {
+    return error.message;
+  }
+  return defaultMessage;
+}
+
+/**
  * Checks if weather data is valid and contains main temperature data
  * @param weather - Weather data object
  * @returns True if weather data is valid

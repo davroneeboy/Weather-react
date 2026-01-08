@@ -2,7 +2,7 @@ import React, { useState, useCallback } from 'react';
 import { WeatherData } from './types/weather.types';
 import { WeatherService } from './services/weather.service';
 import { API_CONFIG } from './constants/api.constants';
-import { isValidWeatherData, getWeatherClassName } from './utils/weather.util';
+import { isValidWeatherData, getWeatherClassName, extractErrorMessage } from './utils/weather.util';
 import { SearchBox } from './components/search-box/search-box.component';
 import { WeatherDisplay } from './components/weather-display/weather-display.component';
 import { Loading } from './components/loading/loading.component';
@@ -14,7 +14,7 @@ const weatherService = new WeatherService(API_CONFIG);
 /**
  * Main application component for weather display
  */
-function App(): JSX.Element {
+function App(): React.ReactElement {
   const [query, setQuery] = useState<string>('');
   const [weather, setWeather] = useState<WeatherData | Record<string, never>>({});
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -30,9 +30,9 @@ function App(): JSX.Element {
       const weatherData = await weatherService.fetchWeatherByCity(query.trim());
       setWeather(weatherData);
       setQuery('');
-    } catch (err) {
-      const error = err instanceof Error ? err.message : 'Ошибка при получении данных. Проверьте подключение к интернету.';
-      setErrorMessage(error);
+    } catch (err: unknown) {
+      const errorMessage = extractErrorMessage(err, 'Ошибка при получении данных. Проверьте подключение к интернету.');
+      setErrorMessage(errorMessage);
       setWeather({});
     } finally {
       setIsLoading(false);

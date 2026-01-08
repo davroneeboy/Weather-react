@@ -7,6 +7,6 @@ interface ErrorProps {
 /**
  * Error message display component
  */
-export function Error({ message }: ErrorProps): JSX.Element {
+export function Error({ message }: ErrorProps): React.ReactElement {
   return <div className="error">{message}</div>;
 }
