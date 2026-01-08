@@ -32,8 +32,17 @@ export interface WeatherData {
 export interface WeatherApiConfig {
   key: string;
   base: string;
+  provider?: 'openweather' | 'openmeteo';
 }
 
 export interface SearchParams {
   query: string;
+}
+
+export interface OpenMeteoWeatherData {
+  name: string;
+  main: WeatherMain;
+  sys: WeatherSys;
+  weather: WeatherCondition[];
+  cod: string | number;
 }
