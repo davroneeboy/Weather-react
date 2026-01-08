@@ -31,8 +31,8 @@ function App(): React.ReactElement {
       setWeather(weatherData);
       setQuery('');
     } catch (err: unknown) {
-      const errorMessage = extractErrorMessage(err, 'Ошибка при получении данных. Проверьте подключение к интернету.');
-      setErrorMessage(errorMessage);
+      const extractedMessage = extractErrorMessage(err, 'Ошибка при получении данных. Проверьте подключение к интернету.');
+      setErrorMessage(extractedMessage);
       setWeather({});
     } finally {
       setIsLoading(false);

@@ -1,4 +1,5 @@
 import React from 'react';
+import { FiSearch } from 'react-icons/fi';
 
 interface SearchBoxProps {
   query: string;
@@ -21,17 +22,34 @@ export function SearchBox({ query, isLoading, onQueryChange, onSearch }: SearchB
     onQueryChange(event.target.value);
   };
 
+  const handleSearchClick = (): void => {
+    if (query.trim()) {
+      onSearch();
+    }
+  };
+
   return (
     <div className="search-box">
-      <input
-        type="text"
-        className="search-bar"
-        placeholder="Введите название города..."
-        onChange={handleChange}
-        value={query}
-        onKeyDown={handleKeyDown}
-        disabled={isLoading}
-      />
+      <div className="search-container">
+        <input
+          type="text"
+          className="search-bar"
+          placeholder="Введите название города..."
+          onChange={handleChange}
+          value={query}
+          onKeyDown={handleKeyDown}
+          disabled={isLoading}
+        />
+        <button
+          type="button"
+          className="search-button"
+          onClick={handleSearchClick}
+          disabled={isLoading || !query.trim()}
+          aria-label="Поиск"
+        >
+          <FiSearch className="search-icon" />
+        </button>
+      </div>
     </div>
   );
 }
