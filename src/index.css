@@ -101,3 +101,46 @@ main {
   font-weight: 700;
   text-shadow: 3px 3px rgba(50, 50, 70, 0.5);
 }
+
+.loading {
+  color: #FFF;
+  font-size: 24px;
+  font-weight: 500;
+  text-align: center;
+  text-shadow: 2px 2px rgba(50, 50, 70, 0.5);
+  margin-top: 50px;
+}
+
+.error {
+  color: #FFF;
+  font-size: 20px;
+  font-weight: 500;
+  text-align: center;
+  text-shadow: 2px 2px rgba(50, 50, 70, 0.5);
+  background-color: rgba(255, 0, 0, 0.3);
+  padding: 15px;
+  border-radius: 16px;
+  margin: 20px auto;
+  max-width: 500px;
+}
+
+.welcome {
+  color: #FFF;
+  font-size: 24px;
+  font-weight: 300;
+  text-align: center;
+  text-shadow: 2px 2px rgba(50, 50, 70, 0.5);
+  margin-top: 100px;
+}
+
+.welcome p {
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 20px;
+  border-radius: 16px;
+  display: inline-block;
+}
+
+.search-box .search-bar:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
